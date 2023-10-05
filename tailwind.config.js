@@ -22,10 +22,7 @@ module.exports = {
         contain: 'contain',
         50: '50%',
         16: '4rem',
-      },
-      backgroundImage: {
-        profilepic: "url('/img/profilepic.jpg')",
-      },
+      }
     },
     screens: {
       xs: "480px",

@@ -1,33 +1,69 @@
 import React, { Fragment } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, Card, Image, CardHeader, CardBody } from '@nextui-org/react';
-const CountryCard = () => {
+import {Card, Image, CardHeader, CardBody, Divider } from '@nextui-org/react';
+import { RiSpeakFill} from 'react-icons/ri'
+import { BsPeopleFill } from 'react-icons/bs'
+import { GiMoneyStack } from 'react-icons/gi'
+import { Link } from 'react-router-dom';
+
+const CountryCard = ({country}) => {
     // const favouritesList = useSelector((state) => state.favourites.favourites);
-    // const dispatch = useDispatch
+    const dispatch = useDispatch
 
   return (
     <Fragment>
-        <div>
+        <div className='mt-10'>
             <Link
-                // href={`/countries/${country.name.common}`}
-                // state={{ country: country}}
+                to={`/countries/${country.name.common}`}
+                state={{ country: country}}
             >
                 <Card className='h-100'>
                     {/* favourites */}
                     <CardHeader>
                         <Image
-                            src='https://images.unsplash.com/photo-1569706971306-de5d78f6418e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80'
+                            src={country.flags.svg}
                             className="rounded h-50"
                             style={{
-                            objectFit: "cover",
-                            minHeight: "200px",
-                            maxHeight: "200px",
+                            objectFit: "fill",
+                            minHeight: "350px",
+                            maxHeight: "3500px",
                             }} 
                         />
                     </CardHeader>
                     <CardBody>
-                        <p>Nigeria</p>
-                        <p>Abuja</p>
+                        <div className='mb-8 font-poppins'>
+                            <p className='font-semibold text-lg'>{country.name.common}</p>
+                            <p className='italic font-extralight'>{country.capital}</p>
+                        </div>
+                        <div>
+                            <p className='flex items-center'>
+                                <RiSpeakFill size={35}/>
+                                <span className='ml-10'>
+                                    {Object.values(country.languages ?? {}).join(", ")}
+                                </span>
+                            </p>
+                        </div>
+                        <Divider />
+                        <div>
+                            <p className='flex items-center'>
+                                <BsPeopleFill size={35}/>
+                                <span className='ml-10'>
+                                    {country.population.toLocaleString()}
+                                </span>
+                            </p>
+                        </div>
+                        <Divider />
+                        <div>
+                            <p className='flex items-center'>
+                                <GiMoneyStack size={35}/>
+                                <span className='ml-10'>
+                                    {Object.values(country.currencies || {})
+                                        .map((currency) => currency.name)
+                                        .join(", ")}
+                                </span>
+                            </p>
+                        </div>
+          
                     </CardBody>
 
 
