@@ -1,8 +1,10 @@
-import React, { useEffect, useState} from 'react'
+import React, { useEffect, useState, useMemo} from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import { CardHeader, Spinner, CardBody, CardFooter, Button, Image, Card } from '@nextui-org/react';
 import { Fragment } from 'react';
+import { GoogleMap, useLoadScript, MarkerF } from '@react-google-maps/api';
+
 
 
 
@@ -21,6 +23,14 @@ const CountriesSingle = () => {
   const country = location.state.country;
   // console.log('country is:', country)
   // console.log('key is:', import.meta.env.VITE_OPENWEATHER_KEY)
+
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY
+  });
+
+  const centre = useMemo(()=> ({ lat: country.latlng[0], lng: country.latlng[1]}),[]);
+
+  console.log(centre)
 
   useEffect(()=>{
     if (!country.capital){
@@ -55,7 +65,7 @@ const CountriesSingle = () => {
 
   return (
     <Fragment>
-      <Card className='w-[800px] h-[900px]'>
+      <Card className='w-[800px] h-[800px] sm:mx-[50vw]'>
         <div className='grid grid-cols-2'>
             <CardBody>
               <Image 
@@ -89,12 +99,18 @@ const CountriesSingle = () => {
               )}
             </CardBody>
         </div>
+        <GoogleMap zoom={7} center={centre} mapContainerClassName="w-[600px] h-[400px] rounded ml-[40px]">
+          <MarkerF position={centre}/>
+
+        </GoogleMap>
         <CardFooter>
-                <Button variant='light' onPress={()=> navigate('/countries')}>
+                <Button variant='light' onPress={()=> navigate('/countries')} >
                     Back to countries
                 </Button>
         </CardFooter>
       </Card>
+      <div>
+      </div>
 
     </Fragment>
   )
