@@ -21,16 +21,12 @@ const CountriesSingle = () => {
 
   //Destructing variables
   const country = location.state.country;
-  // console.log('country is:', country)
-  // console.log('key is:', import.meta.env.VITE_OPENWEATHER_KEY)
 
-  const { isLoaded } = useLoadScript({
+  useLoadScript({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY
   });
 
   const centre = useMemo(()=> ({ lat: country.latlng[0], lng: country.latlng[1]}),[]);
-
-  console.log(centre)
 
   useEffect(()=>{
     if (!country.capital){
@@ -53,6 +49,7 @@ const CountriesSingle = () => {
       <Fragment>
         <Spinner 
           animation='border'
+          color='danger'
           role='status'
           className='center'
           variant='info'>
@@ -65,51 +62,54 @@ const CountriesSingle = () => {
 
   return (
     <Fragment>
-      <Card className='w-[800px] h-[800px] sm:mx-[50vw]'>
-        <div className='grid grid-cols-2'>
-            <CardBody>
-              <Image 
-                  alt='capital picture'
-                  src={`https://source.unsplash.com/1600x900/?${country.capital}`}
-                  width={400}
-              />
-            </CardBody>
-            <CardBody>
-                <h2 className='font-semibold text-lg'>{country.name.common}</h2>
-                <h3>{country.capital}</h3>
-                <small>{country.area.toLocaleString()}km²</small>
-                <small>{country.continents}</small>
-              {error && (
-                <p>
-                  Sorry, we don't have weather inofrmation for this country.
-                </p>
-              )}
-              {!error && weather && (
-                <div className='mt-[20px]'>
+      <div className='flex justify-center'>
+        <Card className='w-[800px] h-[800px] mt-[120px]'>
+          <div className='grid grid-cols-2'>
+              <CardBody>
+                <Image 
+                    alt='capital picture'
+                    src={`https://source.unsplash.com/1600x900/?${country.capital}`}
+                    width={400}
+                />
+              </CardBody>
+              <CardBody>
+                  <h2 className='font-semibold text-lg'>{country.name.common}</h2>
+                  <h3>{country.capital}</h3>
+                  <small>{country.area.toLocaleString()}km²</small>
+                  <small>{country.continents}</small>
+                {error && (
                   <p>
-                      Right now is <strong>{parseInt(weather.main.temp)}</strong> degrees in {country.capital} and 
-                      {weather.weather[0].descritption}
+                    Sorry, we don't have weather inofrmation for this country.
                   </p>
-                  <Image 
-                      src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
-                      alt={`${weather.weather[0].descritption}`}
-                  
-                  />
-                </div>
-              )}
-            </CardBody>
-        </div>
-        <GoogleMap zoom={7} center={centre} mapContainerClassName="w-[600px] h-[400px] rounded ml-[40px]">
-          <MarkerF position={centre}/>
+                )}
+                {!error && weather && (
+                  <div className='mt-[20px]'>
+                    <p>
+                        Right now is <strong>{parseInt(weather.main.temp)}</strong> degrees in {country.capital} and 
+                        {weather.weather[0].descritption}
+                    </p>
+                    <Image 
+                        src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+                        alt={`${weather.weather[0].descritption}`}
+                    
+                    />
+                  </div>
+                )}
+              </CardBody>
+          </div>
+          <div className='flex justify-center'>
+            <GoogleMap zoom={6} center={centre} mapContainerClassName="w-[500px] h-[400px] rounded my-[20px]">
+              <MarkerF position={centre}/>
 
-        </GoogleMap>
-        <CardFooter>
-                <Button variant='light' onPress={()=> navigate('/countries')} >
-                    Back to countries
-                </Button>
-        </CardFooter>
-      </Card>
-      <div>
+            </GoogleMap>
+          </div>
+          <CardFooter className='flex justify-center'>
+                  <Button variant='solid' onPress={()=> navigate('/countries')} color='warning' >
+                      Back to countries
+                  </Button>
+          </CardFooter>
+        </Card>
+
       </div>
 
     </Fragment>

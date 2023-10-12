@@ -9,6 +9,8 @@ import {
   linkedin,
   github,
   logo,
+  main_logo
+
 } from "../assets";
 import {
   Navbar,
@@ -20,18 +22,22 @@ import {
   NavbarMenuItem,
   Image,
   Link,
+  Button,
 } from "@nextui-org/react";
+import { auth, logout } from "../auth/fireBase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const Layout = () => {
+  const [user] = useAuthState(auth)
   const [toggle, setToggle] = useState(false);
   return (
     <Fragment>
       <>
-        <Navbar className="flex space w-full justify-between items-center sm:py-6 sm:px-6">
+        <Navbar className="flex w-full justify-between items-center sm:py-6 sm:px-6">
           <NavbarBrand>
-            <Image src={logo} alt="logo" width={360} />
+            <Image src={main_logo} alt="logo" width={300} />
           </NavbarBrand>
-          <NavbarContent className="sm:flex hidden justify-end flex-1 self-start mr-20">
+          <NavbarContent className="sm:flex hidden flex-1 self-start mr-20" justify="center">
             <NavbarItem>
               <Link href="/">Home</Link>
             </NavbarItem>
@@ -41,8 +47,14 @@ const Layout = () => {
             <NavbarItem>
               <Link href="/favourites">Favourites</Link>
             </NavbarItem>
+            <NavbarItem>
+              <Link href="/login">Login</Link>
+            </NavbarItem>
+            <NavbarItem>
+              <Link href="/register">Register</Link>
+            </NavbarItem>
           </NavbarContent>
-          <NavbarContent className="sm:hidden flex justify-end items-center self-start">
+          <NavbarContent className="sm:hidden flex items-center self-start" justify="end">
             <NavbarItem>
               <Link href="/">
                 <Image
@@ -55,6 +67,7 @@ const Layout = () => {
               </Link>
             </NavbarItem>
           </NavbarContent>
+          {user ? (<Button variant="primary" onClick={logout}>Logout</Button>) : (<Link href="/login"><Button>Login</Button></Link>)}
         </Navbar>
       </>
       <>

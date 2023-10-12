@@ -4,10 +4,11 @@ import {Card, Image, CardHeader, CardBody, Divider } from '@nextui-org/react';
 import { RiSpeakFill} from 'react-icons/ri'
 import { BsPeopleFill } from 'react-icons/bs'
 import { GiMoneyStack } from 'react-icons/gi'
+import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
 import { Link } from 'react-router-dom';
-
+import { removeFavourite, addFavourite } from '../feautures/countries/favouritesSlice';
 const CountryCard = ({country}) => {
-    // const favouritesList = useSelector((state) => state.favourites.favourites);
+    const favouritesList = useSelector((state) => state.favourites.favourites);
     const dispatch = useDispatch
 
   return (
@@ -17,16 +18,26 @@ const CountryCard = ({country}) => {
                 to={`/countries/${country.name.common}`}
                 state={{ country: country}}
             >
-                <Card className='h-100'>
-                    {/* favourites */}
+                <Card>
+                    {favouritesList.includes(country.name.common) ? (
+                        <MdFavorite size={50} 
+                                className='pl-[20px]'
+                                onClick={()=> dispatch(removeFavourite(country.name.common))}
+                        />
+                    ) : (
+                        <MdFavoriteBorder size={50} 
+                                className='pl-[20px]'
+                                onClick={()=> dispatch(addFavourite(country.name.common))}
+                        />
+                    )}
                     <CardHeader>
                         <Image
                             src={country.flags.svg}
-                            className="rounded h-50"
+                            className="rounded mt-[-50px]"
                             style={{
-                            objectFit: "fill",
+                            objectFit: "contain",
                             minHeight: "350px",
-                            maxHeight: "3500px",
+                            maxHeight: "350px",
                             }} 
                         />
                     </CardHeader>

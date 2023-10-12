@@ -18,16 +18,17 @@ const Countries = () => {
 
   return (
     <Fragment>
-      <div>
+      <div className='flex justify-center flex-wrap '>
           <Input 
-              style={{width: '18rem'}}
               type='search'
               placeholder='Search for countries'
               aria-label='Search'
-              onChange={(e)=> setSearch(e.target.value)}        
+              onChange={(e)=> setSearch(e.target.value)}
+              className='max-w-lg'        
           />
-      </div>
-      <div className='sm:grid sm:grid-cols-4 gap-x-7 gap-y-1 flex flex-wrap'>
+      </div>    
+      
+      <div className='sm:grid md:grid-cols-5 xs:grid-cols-2 gap-x-7 gap-y-1 flex flex-wrap'>
         {countriesList.reduce((prev, country) => //filtering using the reducer method before output display
                 country.name.common.toLowerCase().includes(search.toLowerCase())
                 ? [...prev, <CountryCard key={country.name.common} country={country} />]
