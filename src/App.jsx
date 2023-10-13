@@ -9,6 +9,7 @@ import Login from './components/Login';
 import ProtectedRoute from './auth/ProtectedRoute';
 import { auth } from './auth/fireBase';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import Favourites from './components/Favourites';
 
 
 
@@ -20,12 +21,12 @@ function App() {
       <BrowserRouter>
         <Routes>
             <Route path='/' element={<Layout />}>
-
               <Route path='/' element={<Home />} />
               <Route path='/login' element={<Login />}/>
               <Route path='/register' element={<Register />}/>
 
               <Route element={<ProtectedRoute user={user} />}>
+                <Route path='/favourites' element={<Favourites />}/>
                 <Route path='/countries' element={<Countries />}/>
                 <Route path='/countries/:single' element={<CountriesSingle />}/>
               </Route>

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { auth, registerWithEmailAndPassword } from '../auth/fireBase';
 import { useAuthState} from "react-firebase-hooks/auth"
 import { useNavigate, Link } from 'react-router-dom';
-import { Button } from '@nextui-org/react';
+import { Button, Input } from '@nextui-org/react';
 
 const Register = () => {
     const [email, setEmail] = useState('');
@@ -21,31 +21,47 @@ const Register = () => {
         if (user) navigate('/countries')
     }, [user, loading])
   return (
-    <div>
-        <input 
-            type="text"
-            value={name}
-            onChange={(e)=> setName(e.target.value)}
-            placeholder='Full Name'
-         />
-        <input 
-            type="email"
-            value={email}
-            onChange={(e)=> setEmail(e.target.value)}
-            placeholder='email'
-         />
-        <input 
-            type="password"
-            value={password}
-            onChange={(e)=> setPassword(e.target.value)}
-            placeholder='Password'
-         />
-         <Button onClick={register}>Register</Button>
-         <div>
-            Already have an account?
-            <Link to="/login">Login</Link>
-         </div>
-    </div>
+    <Fragment>
+        <div className='border border-solid border-sky-500 md:w-[400px] md:ml-[40vw] md:mt-[20vh] bg-sky-400 rounded-lg md:h-[25rem]'>
+            <Input 
+                type="text"
+                isRequired
+                value={name}
+                onChange={(e)=> setName(e.target.value)}
+                label='Full Name'
+                labelPlacement='outside'
+                className='md:max-w-lg my-9 px-[10px]'
+            />
+            <Input 
+                type="email"
+                isRequired
+                value={email}
+                onChange={(e)=> setEmail(e.target.value)}
+                label='email'
+                labelPlacement='outside'
+                className='md:max-w-lg my-9 px-[10px]'
+            />
+            <Input 
+                type="password"
+                isRequired
+                value={password}
+                onChange={(e)=> setPassword(e.target.value)}
+                label='Password'
+                labelPlacement='outside'
+                className='md:max-w-lg my-9 px-[10px]'
+            />
+            <Button onClick={register} 
+                    color='default' 
+                    variant='solid'
+                    className=' ml-[10em]'
+            >Register
+            </Button>
+            <div className='ml-[5em] mt-[1em]'>
+                Already have an account?
+                <Link to="/login">Login</Link>
+            </div>
+        </div>
+    </Fragment>
   )
 }
 

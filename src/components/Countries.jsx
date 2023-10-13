@@ -18,13 +18,13 @@ const Countries = () => {
 
   return (
     <Fragment>
-      <div className='flex justify-center flex-wrap '>
+      <div className='flex justify-center flex-wrap md:mt-[70px] mt-[30px]'>
           <Input 
               type='search'
               placeholder='Search for countries'
               aria-label='Search'
               onChange={(e)=> setSearch(e.target.value)}
-              className='max-w-lg'        
+              className='md:max-w-lg'        
           />
       </div>    
       

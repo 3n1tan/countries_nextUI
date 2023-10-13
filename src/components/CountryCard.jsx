@@ -14,22 +14,22 @@ const CountryCard = ({country}) => {
   return (
     <Fragment>
         <div className='mt-10'>
-            <Link
-                to={`/countries/${country.name.common}`}
-                state={{ country: country}}
-            >
-                <Card>
-                    {favouritesList.includes(country.name.common) ? (
-                        <MdFavorite size={50} 
-                                className='pl-[20px]'
-                                onClick={()=> dispatch(removeFavourite(country.name.common))}
-                        />
-                    ) : (
-                        <MdFavoriteBorder size={50} 
-                                className='pl-[20px]'
-                                onClick={()=> dispatch(addFavourite(country.name.common))}
-                        />
-                    )}
+            <Card>
+                {favouritesList.includes(country.name.common) ? (
+                    <MdFavorite size={50} 
+                            className='pl-[20px]'
+                            onClick={()=> dispatch(removeFavourite(country.name.common))}
+                    />
+                ) : (
+                    <MdFavoriteBorder size={50} 
+                            className='pl-[20px]'
+                            onClick={()=> dispatch(addFavourite(country.name.common))}
+                    />
+                )}
+                <Link
+                        to={`/countries/${country.name.common}`}
+                        state={{ country: country}}
+                >
                     <CardHeader>
                         <Image
                             src={country.flags.svg}
@@ -74,13 +74,10 @@ const CountryCard = ({country}) => {
                                 </span>
                             </p>
                         </div>
-          
+        
                     </CardBody>
-
-
-                </Card>
-
-            </Link>
+                </Link>
+            </Card>
         </div>
     </Fragment>
   )
