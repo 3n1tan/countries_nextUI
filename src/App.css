@@ -5,3 +5,10 @@
   text-align: center;
 }
  */
+
+ /* In your CSS or styles file */
+.clickable-icon {
+  cursor: pointer;
+  user-select: none;
+  /* Add any other styles you want */
+}

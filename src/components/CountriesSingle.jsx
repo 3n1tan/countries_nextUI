@@ -90,8 +90,7 @@ const CountriesSingle = () => {
                     </p>
                     <Image 
                         src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
-                        alt={`${weather.weather[0].descritption}`}
-                    
+                        alt={`${weather.weather[0].descritption}`}                 
                     />
                   </div>
                 )}
