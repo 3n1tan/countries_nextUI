@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { initializeCountries } from "../feautures/countries/countriesSlice";
-import { clearFavourites, getFavouritesFromSource } from "../feautures/countries/favouritesSlice";
+import favouritesSlice, { clearFavourites, getFavouritesFromSource } from "../feautures/countries/favouritesSlice";
 import CountryCard from "./CountryCard";
 import { Button, Spinner, Input } from "@nextui-org/react";
 
@@ -62,11 +62,12 @@ const Favourites = () => {
             ))}
         </div>
         <div xs={2} md={3} lg={4} className="flex justify-center mt-12">
-            <Button onClick={() => {
+            {favouritesList && ( <Button onClick={() => {
                     dispatch(clearFavourites())
                     }}
             >Clear Favourites
-            </Button>
+            </Button>) }
+           
         </div>
       </Fragment>)
 }

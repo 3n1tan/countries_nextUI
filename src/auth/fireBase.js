@@ -9,12 +9,12 @@ import toast from "react-hot-toast";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBcxmoEtAXtTW5fg3QTl51f5ttXwxTXzg8",
+  apiKey: import.meta.env.VITE_API_FIREBASE_KEY,
   authDomain: "countries-bootstrap-23k.firebaseapp.com",
   projectId: "countries-bootstrap-23k",
   storageBucket: "countries-bootstrap-23k.appspot.com",
-  messagingSenderId: "278993426092",
-  appId: "1:278993426092:web:c828834bc07118c5b33109"
+  messagingSenderId: import.meta.env.VITE_SENDER_ID ,
+  appId: import.meta.env.VITE_APP_ID
 };
 
 // Initialize Firebase

@@ -45,8 +45,8 @@ const CountryCard = ({country}) => {
                                 className="rounded"
                                 style={{
                                 objectFit: "contain",
-                                minHeight: "350px",
-                                maxHeight: "350px",
+                                minHeight: "200px",
+                                // maxHeight: "350px",
                                 }} 
                             />
                         </CardHeader>
