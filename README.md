@@ -45,7 +45,10 @@ Built with:
 ## Required Dependencies
 - vite (run npm install vite@latest)
 
-
+## Live Page
+To try out this live page, use this details to log in
+- E-mail Address: user@test.com
+- Password: 123456
 
 ## Setup and usage
 
