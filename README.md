@@ -52,7 +52,7 @@ To try out this live page, use this details to log in
 
 ## Setup and usage
 
-Live page [here](https://github.com/3n1tan/food_recipe_react.git)
+Live page [here](https://transcendent-cupcake-adc0ac.netlify.app/)
 
 ## Screenshot
 ![Alt text](<Screenshot 2023-10-24 at 3.47.49.png>)
