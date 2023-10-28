@@ -50,9 +50,14 @@ To try out this live page, use this details to log in
 - E-mail Address: user@test.com
 - Password: 123456
 
-## Setup and usage
-
 Live page [here](https://transcendent-cupcake-adc0ac.netlify.app/)
+
+## Setup and usage
+- Clone repo
+- Run "npm install", to install dependencies.
+- Run "npm run dev", to launch in developement mode.
+
+
 
 ## Screenshot
 ![Alt text](<Screenshot 2023-10-24 at 3.47.49.png>)
