@@ -18,8 +18,8 @@ const CountryCard = ({country}) => {
   return (
     <Fragment>
         <div className='mt-10'>
-            <Card>
-                <CardFooter className='h-10'>
+            <Card className='h-full'>
+                <CardFooter className='h-10 pt-10'>
                     {favouritesList.includes(country.name.common) ? (
                         <MdFavorite size={50} 
                         className='pb-5 mt-3' 
@@ -30,8 +30,7 @@ const CountryCard = ({country}) => {
                             <MdFavoriteBorder size={50} 
                             className='pb-5 mt-3' 
                             onClick={()=> dispatch(addFavourite(country.name.common))}
-                       />
-                                           
+                       />                                          
                     )}
                 </CardFooter>
                 <LinkContainer

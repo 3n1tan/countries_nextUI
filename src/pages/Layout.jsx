@@ -11,8 +11,8 @@ import {
   NavbarMenu,
   NavbarMenuItem,
   Image,
+  Link
 } from "@nextui-org/react";
-import { Link } from "react-router-dom";
 import { auth, logout } from "../auth/fireBase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
@@ -27,44 +27,43 @@ const Layout = () => {
           <NavbarBrand>
             <Image src={main_logo} alt="logo" width={300} />
           </NavbarBrand>
-          <NavbarContent className="sm:flex hidden flex-1 self-start mr-20" justify="center">
+          <NavbarContent className="sm:flex hidden flex-1 self-start justify-center" justify="end">
             <NavbarItem>
-              <Link to="/">Home</Link>
+              <Link href="/">Home</Link>
             </NavbarItem>
             <NavbarItem>
-              <Link to="/countries">Countries</Link>
+              <Link href="/countries">Countries</Link>
             </NavbarItem>
             <NavbarItem>
-              <Link to="/favourites">Favourites</Link>
+              <Link href="/favourites">Favourites</Link>
             </NavbarItem>
             <NavbarItem>
-              {user ? (<Link onClick={logout} to="">Logout</Link>) : (<Link to="/login">Login</Link>)}
+              {user ? (<Link onClick={logout} href="">Logout</Link>) : (<Link href="/login">Login</Link>)}
             </NavbarItem>
             <NavbarItem>
-              <Link to="/register">Register</Link>
+              <Link href="/register">Register</Link>
             </NavbarItem>
           </NavbarContent>
 
-          <NavbarMenu>
-            <NavbarMenuItem>
-              <Link to="/">Home</Link>
+          <NavbarMenu className="flex items-center">
+            <NavbarMenuItem className="mb-5 mt-5">
+              <Link href="/">Home</Link>
+            </NavbarMenuItem>
+            <NavbarMenuItem className="mb-5">
+              <Link href="/countries">Countries</Link>
+            </NavbarMenuItem>
+            <NavbarMenuItem className="mb-5">
+              <Link href="/favourites">Favourites</Link>
+            </NavbarMenuItem>
+            <NavbarMenuItem className="mb-5">
+              <Link href="/register">Register</Link>
             </NavbarMenuItem>
             <NavbarMenuItem>
-              <Link to="/countries">Countries</Link>
-            </NavbarMenuItem>
-            <NavbarMenuItem>
-              <Link to="/favourites">Favourites</Link>
-            </NavbarMenuItem>
-            <NavbarMenuItem>
-              {/* {user ? <Link to="/register">Registeddr</Link> : null} */}
-              <Link to="/register">Register</Link>
-            </NavbarMenuItem>
-            <NavbarMenuItem>
-              {user ? (<Link onClick={logout} to="">Logout</Link>) : (<Link to="/login">Login</Link>)}
+              {user ? (<Link onClick={logout} href="">Logout</Link>) : (<Link href="/login">Login</Link>)}
             </NavbarMenuItem>
           </NavbarMenu>
 
-          <NavbarContent className="sm:hidden flex items-center self-start" justify="end">
+          <NavbarContent className="sm:hidden flex items-center self-start justify-center" justify="end">
             <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
           </NavbarContent>
         </Navbar>
