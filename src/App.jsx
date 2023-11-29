@@ -1,6 +1,7 @@
 import { NextUIProvider } from '@nextui-org/react'
 import Layout from "./pages/Layout";
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom';
 import Home from './components/Home';
 import Countries from './components/Countries';
 import CountriesSingle from './components/CountriesSingle';
