@@ -38,7 +38,7 @@ const Layout = () => {
               <Link to="/favourites">Favourites</Link>
             </NavbarItem>
             <NavbarItem>
-              {user ? (<Link onClick={logout} href="">Logout</Link>) : (<Link href="/login">Login</Link>)}
+              {user ? (<Link onClick={logout} to="">Logout</Link>) : (<Link to="/login">Login</Link>)}
             </NavbarItem>
             <NavbarItem>
               <Link to="/register">Register</Link>
